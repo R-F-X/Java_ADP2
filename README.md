@@ -1,13 +1,13 @@
-PROGRAM:        CAR-VOTING APP 
+# PROGRAM:      CAR-VOTING APP 
 - Descrption:   A Java desktop application used to vote the best car of the year
 - Started:      08.10.24
-- Updated:      08.10.24
+- Updated:      10.10.24
 - Status:       work-in-progress
 - Version:      alpha
 - Developers
-    > Ammaar 
-    > Siyambukha
-    > Joshua
+    + Ammaar 
+    + Siyambukha
+    + Joshua
 ---
 
 
@@ -37,5 +37,5 @@ PROGRAM:        CAR-VOTING APP
 ---
 
 ### Screenshots
-- 
+- ![]("./)screenshots/sshot1.jpg")
 ---
