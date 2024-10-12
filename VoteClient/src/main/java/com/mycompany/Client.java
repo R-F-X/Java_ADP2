@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 // add loop somewhere
 /**
@@ -18,7 +19,8 @@ public class Client {
 
     public Client() {      
         try {
-            socket = new Socket("127.0.0.1", 6666);
+            socket = new Socket("localhost", 6666);
+            System.out.println("connected to server");
         } catch (IOException e) {
             System.out.println("Error creating socket: " + e.getMessage());
         }
@@ -27,17 +29,18 @@ public class Client {
     
     private void createStreams(){
         try {
-            input = new ObjectInputStream(socket.getInputStream());
             output = new ObjectOutputStream(socket.getOutputStream());
+            input = new ObjectInputStream(socket.getInputStream());
+            
         } catch (IOException e) {
             System.out.println("Error creating connection: " + e.getMessage());
         }
     }
     
-    public String readResults(){
-        String results = "";
+    public ArrayList<Object> readResults(){
+        ArrayList<Object> results = new ArrayList<>();
         try {
-            results = (String) input.readObject();
+            results = (ArrayList<Object>) input.readObject();
         } catch (IOException e) {
             System.out.println("Error getting results: " + e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -67,12 +70,13 @@ public class Client {
     
     // TESTING
     public static void main(String[] args){
-        System.out.println("CLIENT");
+        System.out.println("Client Start");
 
         Client client = new Client();
+        VotingGui gui = new VotingGui();
         client.writeVehicle("vehicle text");
-        String r = client.readResults(); 
-        System.out.println(r);
+//        ArrayList<Object> r = client.readResults(); // ammars was : String r = client.readResults(); arraylist error cnnot be converted to string
+//        System.out.println(r);
         
         client.close();
     }

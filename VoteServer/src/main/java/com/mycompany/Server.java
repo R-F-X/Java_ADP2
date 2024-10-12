@@ -27,7 +27,9 @@ public class Server {
 
     private void listen(){
         try {
+            System.out.println("scanning for client...");
             connection = serverSocket.accept();
+            System.out.println("successfully connected");
         } catch (IOException e) {
             System.out.println("Error creating connection: " + e.getMessage());
         }
@@ -35,8 +37,9 @@ public class Server {
     
     private void createStreams(){
         try {
+            output = new ObjectOutputStream(connection.getOutputStream()); // swap these around fixes it, output must be first always like it is now
             input = new ObjectInputStream(connection.getInputStream());
-            output = new ObjectOutputStream(connection.getOutputStream());
+            
         } catch (IOException e) {
             System.out.println("Error creating streams: " + e.getMessage());
         }
@@ -48,8 +51,8 @@ public class Server {
             output.writeObject("message out");
             System.out.println("message sent");
         }
-        catch(IOException ex){
-            System.out.println(ex.getMessage());
+        catch(IOException e){
+            System.out.println("Error writing results: " + e.getMessage());
         }
     }
     
@@ -89,10 +92,10 @@ public class Server {
     
     // TESTING
     public static void main(String[] args){
-        System.out.println("SERVER");
+        System.out.println("Server Start");
         
         Server server = new Server();
-        server.process();
+//        server.process();
         server.close();
     }
 }
