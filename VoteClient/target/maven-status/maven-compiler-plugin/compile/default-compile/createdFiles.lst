@@ -1,12 +1,5 @@
-com\mycompany\GUI\GUIClient.class
-com\mycompany\GUI\WindowAddCar.class
-com\mycompany\GUI\WindowHome.class
-com\mycompany\GUI\WindowHome$2.class
-com\mycompany\GUI\WindowAddCar$3.class
+com\mycompany\GUIClient.class
+com\mycompany\GUIClient$2.class
 com\mycompany\Client.class
-com\mycompany\GUI\WindowAddCar$1.class
-com\mycompany\GUI\WindowHome$1.class
-com\mycompany\Main.class
-com\beans\wellnesswave\utilities\Tools.class
-com\mycompany\GUI\WindowAddCar$2.class
-com\mycompany\GUI\WindowHome$3.class
+com\mycompany\Tools.class
+com\mycompany\GUIClient$1.class

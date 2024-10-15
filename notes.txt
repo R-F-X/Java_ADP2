@@ -1,0 +1,26 @@
+-- remove temp file and comment before uploading (including this file)
+- place code for connections in the code for the GUI
+- learn the git command to download and load branches and view commits
+- create the database if it does not exist yet
+
+- add mouse events to seperate methods instead of ad method directly for that component?s
+---
+
+rename branch name and push to repos
+branch_name: code-cleanup
+--- 
+
+QuickAdd.java -> delete? cannot add records to table
+
+
+    String table1 = "CREATE TABLE Cars("
+            + "car_name VARCHAR(30), "
+            + "num_of_votes INTEGER"
+            + ")";
+    
+
+// clear table; old
+       for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+                    tableModel.removeRow(i);
+                }
+

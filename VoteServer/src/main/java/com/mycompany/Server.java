@@ -1,11 +1,13 @@
 
 package com.mycompany;
 
+import com.mycompany.databaseControl.ServerDAO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 
 public class Server {
@@ -13,8 +15,10 @@ public class Server {
     private Socket connection;
     private ObjectOutputStream output;
     private ObjectInputStream input;
+    private ServerDAO serverDAO;
 
     public Server() {
+        serverDAO = new ServerDAO();
         try {
             serverSocket = new ServerSocket(6666);
         } catch (IOException e) {
@@ -27,9 +31,9 @@ public class Server {
 
     private void listen(){
         try {
-            System.out.println("scanning for client...");
+            System.out.println("\nListening for clients...");
             connection = serverSocket.accept();
-            System.out.println("successfully connected");
+            System.out.println("<Connection accepted>");
         } catch (IOException e) {
             System.out.println("Error creating connection: " + e.getMessage());
         }
@@ -37,19 +41,18 @@ public class Server {
     
     private void createStreams(){
         try {
-            output = new ObjectOutputStream(connection.getOutputStream()); // swap these around fixes it, output must be first always like it is now
+            output = new ObjectOutputStream(connection.getOutputStream());
             input = new ObjectInputStream(connection.getInputStream());
-            
         } catch (IOException e) {
             System.out.println("Error creating streams: " + e.getMessage());
         }
     }
 
-    private void writeResults() {
-        //TODO code that retrieves results from database and put them in output stream
+    private void writeResults() { 
+        ArrayList<Object[]> results = serverDAO.readRecords();
         try{
-            output.writeObject("message out");
-            System.out.println("message sent");
+            output.writeObject(results);
+            output.flush();
         }
         catch(IOException e){
             System.out.println("Error writing results: " + e.getMessage());
@@ -59,23 +62,27 @@ public class Server {
     private String readVehicle() {
         String vehicle = "";
         try {
-            vehicle = (String) input.readObject();           
+            vehicle = (String) input.readObject();    
         } catch (IOException e) {
             System.out.println("Error reading vehicle: " + e.getMessage());
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found: " + e.getMessage());
         }
         return vehicle;
+        
+        
     }
 
     public void process(){       
         do {
             String vehicle = readVehicle();
-            System.out.println(vehicle);
-            
-            // TODO code that increases vode of the vehicle by one or add 
-            // the vehicle to the database if it doesn't exist
-            writeResults(); //loads new results to the output stream
+            if (vehicle.equals("")) {
+                this.close();
+                break;
+            }
+            // updates server log
+            GUIServer.logArea.append(serverDAO.process(vehicle) + "\n");
+            writeResults();
         } while (true);
     }
     
@@ -85,17 +92,9 @@ public class Server {
             connection.close();
             input.close();
             output.close();
+            System.out.println("\n<server offline>");
         } catch (IOException e) {
             System.out.println("Error closing connection: " + e.getMessage());
         }
-    }
-    
-    // TESTING
-    public static void main(String[] args){
-        System.out.println("Server Start");
-        
-        Server server = new Server();
-//        server.process();
-        server.close();
     }
 }
