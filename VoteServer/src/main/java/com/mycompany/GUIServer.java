@@ -3,14 +3,17 @@ package com.mycompany;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import javax.swing.*; 
+import javax.swing.border.EmptyBorder;
 
 
 public class GUIServer extends JFrame{
-    JPanel mainPanel;
     public static JTextArea logArea; 
-    JLabel label1; 
-    JPanel panel1; 
+    private JPanel mainPanel;
+    private JLabel label1; 
+    private JPanel panel1; 
     
     GUIServer(){
         super("Server");
@@ -20,7 +23,6 @@ public class GUIServer extends JFrame{
         
         Server server = new Server();
         server.process();
-//        server.close();
     }
     // ------------------------------
     
@@ -32,25 +34,42 @@ public class GUIServer extends JFrame{
     
     private void initComponents(){
         mainPanel = new JPanel();
-        // add a scrollpane also
-        logArea = new JTextArea("for logs", 4, 6);
-        label1 = new JLabel("Logs");
-        panel1 = new JPanel();
         
+        // textarea
+        logArea = new JTextArea("", 4, 6);
+        
+        // scrollpane
+        JScrollPane scroll = new JScrollPane (
+                logArea, 
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+        );
+
+        // header
+        label1 = new JLabel("Logs");
+        label1.setFont(new Font("Arial", Font.PLAIN, 20));
+        label1.setBorder(new EmptyBorder(15, 20, 15, 20));
+        label1.setPreferredSize(new Dimension(100, 30));
+        label1.setForeground(Color.BLUE);
+        label1.setBackground(Color.ORANGE);
+        label1.setOpaque(true);      
+                
+        // bottom panel
+        panel1 = new JPanel();
+        panel1.setBackground(Color.ORANGE);
+
+        // adding to the frame
         this.add(mainPanel);
         
+        // adding to the main panel
         this.mainPanel.setLayout(new BorderLayout());
         this.mainPanel.add(label1, BorderLayout.NORTH);
-        this.mainPanel.add(logArea, BorderLayout.CENTER);
+        this.mainPanel.add(scroll, BorderLayout.CENTER);
         this.mainPanel.add(panel1, BorderLayout.SOUTH);
-
-        this.mainPanel.setBackground(Color.ORANGE);
-        this.panel1.setBackground(Color.ORANGE);
     }
     
     // TESTING
     public static void main(String[] args){
         GUIServer server = new GUIServer();
-//        server.setVisible(true);
     }
 }

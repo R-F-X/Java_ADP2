@@ -1,9 +1,9 @@
 # Program:      Car-voting App 
 - Descrption:   A Java desktop application used to vote the best car of the year
 - Started:      08.10.24
-- Updated:      13.10.24
-- Status:       work-in-progress
-- Version:      alpha
+- Updated:      16.10.24
+- Status:       *COMPLETE*
+- Version:      beta
 - Developers
     + Ammaar 
     + Siyambuka
@@ -16,7 +16,9 @@
     - download the zipped folder OR
     - use the following command in the command-line
     ```
-    git clone <repo name>
+    git clone <repo URL>
+    // OR
+    git clone --branch <branch name> <repo url>
     ```
 2. Set up the database connection in Netbeans
 

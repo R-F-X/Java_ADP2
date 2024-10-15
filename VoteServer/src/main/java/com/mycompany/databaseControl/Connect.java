@@ -11,33 +11,14 @@ public class Connect {
         String username = "root";
         String password = "root";
         
-        System.out.println("attempting to establish connection...");
+        System.out.println("\nAttempting to establish connection to database...");
         try{
             dbc = DriverManager.getConnection(DBURL, username, password);
-            System.out.println("\n<CONNECTION ESTABLISHED>");
+            System.out.println("<Connection Established>");
         }
         catch(SQLException SQLEx){
             System.out.println(SQLEx.getMessage());
         }
         return dbc; 
-    }
-    // OVERLOAD
-    public static void initDBConnection(Connection DBC, Statement SQLStatement){
-        // Connection dbc = null; 
-        String DBURL = "jdbc:derby://localhost:1527/CarVote";
-        String username = "root";
-        String password = "root";
-        
-        System.out.println("attempting to establish connection...");
-        try{
-            DBC = DriverManager.getConnection(DBURL, username, password);
-            System.out.println("\n<CONNECTION ESTABLISHED>");
-
-            SQLStatement = DBC.createStatement();
-            System.out.println("\n<SQL Statement ready>");
-        }
-        catch(SQLException SQLEx){
-            System.out.println(SQLEx.getMessage());
-        }
     }
 }

@@ -14,20 +14,20 @@ public class Tools {
                 "Close app", 
                 JOptionPane.YES_NO_OPTION
         );
-        // System.out.println(option);
         
         if (option == 0){
             System.exit(0);
+            System.out.println("\n<Program terminated by user>");
         }
     }
     
-    // ===========================================
-    // TEST
-//    public static void main(String[] args){
-//        Tools tools = new Tools();
-//
-//    }
-
-    // ===========================================
-
+    public static String capitalize(String word){
+        char firstChar = Character.toUpperCase(word.charAt(0));
+        String cap = "" + firstChar;
+        for (int a=1; a < word.length(); a++){
+            cap += word.charAt(a);
+        }
+        
+        return cap; 
+    }
 }

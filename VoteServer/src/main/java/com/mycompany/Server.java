@@ -20,9 +20,7 @@ public class Server {
     public Server() {
         serverDAO = new ServerDAO();
         try {
-            System.out.println("Opening server");
             serverSocket = new ServerSocket(6666);
-            System.out.println("Server opened");
         } catch (IOException e) {
             System.out.println("Error creating server socket: " + e.getMessage());
         }
@@ -33,9 +31,9 @@ public class Server {
 
     private void listen(){
         try {
-            System.out.println("listening for connection");
+            System.out.println("\nListening for clients...");
             connection = serverSocket.accept();
-            System.out.println("connection accepted");
+            System.out.println("<Connection accepted>");
         } catch (IOException e) {
             System.out.println("Error creating connection: " + e.getMessage());
         }
@@ -43,19 +41,16 @@ public class Server {
     
     private void createStreams(){
         try {
-            System.out.println("streams being created");
             output = new ObjectOutputStream(connection.getOutputStream());
             input = new ObjectInputStream(connection.getInputStream());
-            System.out.println("streams created");
         } catch (IOException e) {
             System.out.println("Error creating streams: " + e.getMessage());
         }
     }
 
-    private void writeResults() { //TODO code that updates server log
+    private void writeResults() { 
         ArrayList<Object[]> results = serverDAO.readRecords();
         try{
-            System.out.println("writing to client...");
             output.writeObject(results);
             output.flush();
         }
@@ -67,9 +62,7 @@ public class Server {
     private String readVehicle() {
         String vehicle = "";
         try {
-            System.out.println("\nreading from client...");
             vehicle = (String) input.readObject();    
-            System.out.println(vehicle);
         } catch (IOException e) {
             System.out.println("Error reading vehicle: " + e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -84,9 +77,11 @@ public class Server {
         do {
             String vehicle = readVehicle();
             if (vehicle.equals("")) {
+                this.close();
                 break;
             }
-            GUIServer.logArea.append(serverDAO.process(vehicle) + "\n"); //TODO code that updates server log
+            // updates server log
+            GUIServer.logArea.append(serverDAO.process(vehicle) + "\n");
             writeResults();
         } while (true);
     }
@@ -97,13 +92,9 @@ public class Server {
             connection.close();
             input.close();
             output.close();
+            System.out.println("\n<server offline>");
         } catch (IOException e) {
             System.out.println("Error closing connection: " + e.getMessage());
         }
     }
-    
-//    public static void main(String[] args) {
-//        Server server = new Server();
-//        server.process();
-//    }
 }

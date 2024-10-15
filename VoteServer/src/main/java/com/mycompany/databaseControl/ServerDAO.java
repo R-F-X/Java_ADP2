@@ -3,12 +3,9 @@ package com.mycompany.databaseControl;
 
 import java.sql.*; 
 import java.util.ArrayList;
-/**
- *
- * @author hp
- */
+
+
 public class ServerDAO {
-    
     private final Connection con;
 
     public ServerDAO() {
