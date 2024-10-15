@@ -14,10 +14,9 @@
 ### Setting up the application (using Apache Netbeans and Apache Derby)
 1. Download the complete package 
     - download the zipped folder OR
-    - use the following command in the command-line
+    - use one of the following commands in the command-line
     ```
     git clone <repo URL>
-    _OR_
     git clone --branch <branch name> <repo url>
     ```
 2. Set up the database connection in Netbeans
