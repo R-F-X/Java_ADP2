@@ -17,7 +17,7 @@
     - use the following command in the command-line
     ```
     git clone <repo URL>
-    // OR
+    _OR_
     git clone --branch <branch name> <repo url>
     ```
 2. Set up the database connection in Netbeans
