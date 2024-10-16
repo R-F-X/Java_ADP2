@@ -1,5 +1,4 @@
 com\mycompany\GUIServer.class
-com\mycompany\QuickAdd.class
 com\mycompany\Server.class
 com\mycompany\databaseControl\Connect.class
 com\mycompany\databaseControl\ServerDAO.class
