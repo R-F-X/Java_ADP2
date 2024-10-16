@@ -38,14 +38,14 @@
 
 ### Using the application
 #### Adding a vote
-    + Select a car from the dropdown (comboxbox)
-    + Click 'Vote' to add a new vote for that selected car
-    + _notice the table will update once you added your vote_
+- Select a car from the dropdown (comboxbox)
+- Click 'Vote' to add a new vote for that selected car
+- _notice the table will update once you added your vote_
 
 #### Adding a new car to vote for
-    + Click 'Add car'. A small window will appear
-    + Add the name of the car in the inputfield, and click 'Add Car' (An error will occur if the car already exists)
-    + _If successful, the new car will be added to the combobox and the table_	
++ Click 'Add car'. A small window will appear
++ Add the name of the car in the inputfield, and click 'Add Car' (An error will occur if the car already exists)
++ _If successful, the new car will be added to the combobox and the table_	
 ---
 
 ### Extra
