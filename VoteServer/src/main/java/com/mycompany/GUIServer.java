@@ -37,6 +37,7 @@ public class GUIServer extends JFrame{
         
         // textarea
         logArea = new JTextArea("", 4, 6);
+        logArea.setEditable(false);
         
         // scrollpane
         JScrollPane scroll = new JScrollPane (
