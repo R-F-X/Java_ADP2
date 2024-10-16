@@ -4,8 +4,6 @@ package com.mycompany;
 import javax.swing.JOptionPane;
 
 public class Tools {
-    Tools(){}
-    // ===========================================
 
     public static void closeApp(){
         int option = JOptionPane.showConfirmDialog(
