@@ -20,6 +20,19 @@ public class Tools {
             System.out.println("\n<Program terminated by user>");
         }
     }
+    public static void confirm(String message){
+        int option = JOptionPane.showConfirmDialog(
+                null,
+                message,
+                "Close app", 
+                JOptionPane.YES_NO_OPTION
+        );
+        
+        if (option == 0){
+            System.exit(0);
+            System.out.println("\n<Program terminated by user>");
+        }
+    }
     
     public static String capitalize(String word){
         char firstChar = Character.toUpperCase(word.charAt(0));
