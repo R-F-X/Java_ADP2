@@ -12,8 +12,8 @@ import javax.swing.border.EmptyBorder;
 public class GUIServer extends JFrame{
     public static JTextArea logArea; 
     private JPanel mainPanel;
-    private JLabel label1; 
-    private JPanel panel1; 
+    private JLabel logLabel; 
+    private JPanel bottomPanel; 
     
     GUIServer(){
         super("Server");
@@ -37,6 +37,7 @@ public class GUIServer extends JFrame{
         
         // textarea
         logArea = new JTextArea("", 4, 6);
+        logArea.setEditable(false);
         
         // scrollpane
         JScrollPane scroll = new JScrollPane (
@@ -46,26 +47,26 @@ public class GUIServer extends JFrame{
         );
 
         // header
-        label1 = new JLabel("Logs");
-        label1.setFont(new Font("Arial", Font.PLAIN, 20));
-        label1.setBorder(new EmptyBorder(15, 20, 15, 20));
-        label1.setPreferredSize(new Dimension(100, 30));
-        label1.setForeground(Color.BLUE);
-        label1.setBackground(Color.ORANGE);
-        label1.setOpaque(true);      
+        logLabel = new JLabel("Logs");
+        logLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        logLabel.setBorder(new EmptyBorder(15, 20, 15, 20));
+        logLabel.setPreferredSize(new Dimension(100, 30));
+        logLabel.setForeground(Color.BLUE);
+        logLabel.setBackground(Color.ORANGE);
+        logLabel.setOpaque(true);      
                 
         // bottom panel
-        panel1 = new JPanel();
-        panel1.setBackground(Color.ORANGE);
+        bottomPanel = new JPanel();
+        bottomPanel.setBackground(Color.ORANGE);
 
         // adding to the frame
         this.add(mainPanel);
         
         // adding to the main panel
         this.mainPanel.setLayout(new BorderLayout());
-        this.mainPanel.add(label1, BorderLayout.NORTH);
+        this.mainPanel.add(logLabel, BorderLayout.NORTH);
         this.mainPanel.add(scroll, BorderLayout.CENTER);
-        this.mainPanel.add(panel1, BorderLayout.SOUTH);
+        this.mainPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
     
     // TESTING

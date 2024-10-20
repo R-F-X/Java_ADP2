@@ -24,14 +24,14 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-
 public class GUIClient extends JFrame {
-    private JPanel topPanel, panel4, centerPanel, leftPanel,  rightPanel, rightBottomPanel;
+
+    private JPanel topPanel, panel4, centerPanel, leftPanel, rightPanel, rightBottomPanel;
     private JTable table;
-    private JLabel label1, label2, label3, label4;
+    private JLabel label1, exitLabel, addCarWindowLabel, addCarLabel;
     private DefaultTableModel tableModel;
 
-    private Client client;
+    private final Client client;
     private ArrayList<Object[]> items;
 
     public GUIClient() {
@@ -42,12 +42,13 @@ public class GUIClient extends JFrame {
     // --------------------------------------
 
     /**
-    Used to create and organize the graphical interface for the client
-    **/
+     * Used to create and organize the graphical interface for the client
+    *
+     */
     private void setGui() {
         System.out.println("CLIENT");
         // window; jframe 
-        setSize(800, 800);  
+        setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         // ----------------------------------
@@ -100,7 +101,7 @@ public class GUIClient extends JFrame {
 
         topPanel.add(headingLabel);
 
-        centerPanel = new JPanel(new GridLayout(1, 2)); 
+        centerPanel = new JPanel(new GridLayout(1, 2));
         leftPanel = new JPanel();
         rightPanel = new JPanel();
         rightBottomPanel = new JPanel();
@@ -113,7 +114,7 @@ public class GUIClient extends JFrame {
         panel4 = new JPanel();
         panel4.setLayout(new GridLayout(1, 3));
         // ----------------------------------
-        
+
         // BUTTONS
         // Vote Button
         label1 = new JLabel("Vote");
@@ -141,12 +142,13 @@ public class GUIClient extends JFrame {
                 }
 
             }
-            
+
             // --hover effect
             @Override
             public void mouseEntered(MouseEvent e) {
                 label1.setBackground(new Color(160, 40, 60)); // Change color on hover
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 label1.setBackground(Color.BLACK); // Revert to original color
@@ -154,41 +156,42 @@ public class GUIClient extends JFrame {
         });
 
         // Exit button
-        label2 = new JLabel("Exit");
-        label2.setFont(new Font("Arial", Font.PLAIN, 24));
-        label2.setHorizontalAlignment(JLabel.CENTER); // Center the text
-        label2.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Create a solid white border
-        label2.setPreferredSize(new Dimension(30, 30));
-        label2.setForeground(Color.WHITE);
-        label2.setBackground(Color.BLACK);
-        label2.setOpaque(true);
-        label2.addMouseListener(new MouseAdapter() {
+        exitLabel = new JLabel("Exit");
+        exitLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        exitLabel.setHorizontalAlignment(JLabel.CENTER); // Center the text
+        exitLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Create a solid white border
+        exitLabel.setPreferredSize(new Dimension(30, 30));
+        exitLabel.setForeground(Color.WHITE);
+        exitLabel.setBackground(Color.BLACK);
+        exitLabel.setOpaque(true);
+        exitLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Tools.closeApp();
             }
-            
+
             // --hover effect
             @Override
             public void mouseEntered(MouseEvent e) {
-                label2.setBackground(new Color(160, 40, 60)); // Change color on hover
+                exitLabel.setBackground(new Color(160, 40, 60)); // Change color on hover
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
-                label2.setBackground(Color.BLACK); // Revert to original color
+                exitLabel.setBackground(Color.BLACK); // Revert to original color
             }
         });
 
         // Add-car button
-        label3 = new JLabel("Add car");
-        label3.setFont(new Font("Arial", Font.PLAIN, 24));
-        label3.setHorizontalAlignment(JLabel.CENTER); // Center the text
-        label3.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Create a solid white border
-        label3.setPreferredSize(new Dimension(30, 30));
-        label3.setForeground(Color.WHITE);
-        label3.setBackground(Color.BLACK);
-        label3.setOpaque(true);
-        label3.addMouseListener(new MouseAdapter() {
+        addCarWindowLabel = new JLabel("Add car");
+        addCarWindowLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        addCarWindowLabel.setHorizontalAlignment(JLabel.CENTER); // Center the text
+        addCarWindowLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Create a solid white border
+        addCarWindowLabel.setPreferredSize(new Dimension(30, 30));
+        addCarWindowLabel.setForeground(Color.WHITE);
+        addCarWindowLabel.setBackground(Color.BLACK);
+        addCarWindowLabel.setOpaque(true);
+        addCarWindowLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // CREATING ANOTHER WINDOW
@@ -199,7 +202,7 @@ public class GUIClient extends JFrame {
                 // jpanel
                 JPanel newWindowPanel = new JPanel();
                 newWindowPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-                
+
                 // textfield
                 JTextField textField = new JTextField("");
                 textField.setPreferredSize(new Dimension(300, 40));
@@ -207,23 +210,23 @@ public class GUIClient extends JFrame {
                 textField.setFont(new Font("Arial", Font.PLAIN, 16));
 
                 // button
-                label4 = new JLabel("Add Car");
-                label4.setFont(new Font("Arial", Font.PLAIN, 20));
-                label4.setHorizontalAlignment(JLabel.CENTER); // Center the text
-                label4.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Create a solid white border
-                label4.setPreferredSize(new Dimension(100, 30));
-                label4.setForeground(Color.WHITE);
-                label4.setBackground(Color.BLACK);
-                label4.setOpaque(true);          
-                label4.addMouseListener(new MouseAdapter() {
+                addCarLabel = new JLabel("Add Car");
+                addCarLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+                addCarLabel.setHorizontalAlignment(JLabel.CENTER); // Center the text
+                addCarLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Create a solid white border
+                addCarLabel.setPreferredSize(new Dimension(100, 30));
+                addCarLabel.setForeground(Color.WHITE);
+                addCarLabel.setBackground(Color.BLACK);
+                addCarLabel.setOpaque(true);
+                addCarLabel.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         String selectedItem = textField.getText().replaceAll(" ", "");
                         String newCar = Tools.capitalize(selectedItem);
-                        
+
                         // clear textfield
                         textField.setText("");
-                        
+
                         // checking if car already exists in database
                         boolean carExists = false;
                         for (int i = 0; i < items.size(); i++) {
@@ -232,47 +235,57 @@ public class GUIClient extends JFrame {
                             }
                         }
 
-                        if (!carExists){
-                            JOptionPane.showMessageDialog(null, ("'" + newCar +  "' will be added"));
+                        if (!carExists) {
+                            int option = JOptionPane.showConfirmDialog(
+                                    null,
+                                    "Are you sure you want to add this car",
+                                    "Add car?",
+                                    JOptionPane.YES_NO_OPTION
+                            );
+
+                            if (option == 0) {
+                                JOptionPane.showMessageDialog(null, ("'" + newCar + "' will be added"));
                             client.writeVehicle(newCar);
-                        
-                            // clearing jtable
-                            tableModel.setRowCount(0);
+
+                            // updating items
+                            items = client.readResults();
 
                             // updating the jtable
-                            items = client.readResults();
-                            for (int i = 0; i < items.size(); i++) {
-                                tableModel.addRow(items.get(i));
-                            }
+                            tableModel.addRow(new Object[]{newCar, 0});
 
                             // updating the combobox
                             comboBox.addItem(newCar);
-                        }
-                        else{
+                            
+                            System.out.println("\n<Car added>");
+                            }
+
+                            
+                        } else {
                             JOptionPane.showMessageDialog(
-                                    null, 
-                                    ("'" + newCar +  "' already exists"),
+                                    null,
+                                    ("'" + newCar + "' already exists"),
                                     "Error",
                                     JOptionPane.ERROR_MESSAGE
                             );
                         }
                     }
-                    
+
                     // --hover effect
                     @Override
                     public void mouseEntered(MouseEvent e) {
-                        label4.setBackground(new Color(160, 40, 60)); // Change color on hover
+                        addCarLabel.setBackground(new Color(160, 40, 60)); // Change color on hover
                     }
+
                     @Override
                     public void mouseExited(MouseEvent e) {
-                        label4.setBackground(Color.BLACK); // Revert to original color
+                        addCarLabel.setBackground(Color.BLACK); // Revert to original color
                     }
                 });
 
                 // adding to jpanel
                 newWindowPanel.setBackground(Color.black);
                 newWindowPanel.add(textField);
-                newWindowPanel.add(label4);
+                newWindowPanel.add(addCarLabel);
 
                 // jframe; customising 
                 newWindow.setBackground(Color.black);
@@ -284,15 +297,16 @@ public class GUIClient extends JFrame {
 
                 newWindow.add(newWindowPanel, BorderLayout.CENTER);
             }
-            
+
             // --hover effect
             @Override
             public void mouseEntered(MouseEvent e) {
-                label3.setBackground(new Color(160, 40, 60)); // Change color on hover
+                addCarWindowLabel.setBackground(new Color(160, 40, 60)); // Change color on hover
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
-                label3.setBackground(Color.BLACK); // Revert to original color
+                addCarWindowLabel.setBackground(Color.BLACK); // Revert to original color
             }
         });
         // ----------------------------------
@@ -321,8 +335,8 @@ public class GUIClient extends JFrame {
 
         // other panels
         panel4.add(label1);
-        panel4.add(label3);
-        panel4.add(label2);
+        panel4.add(addCarWindowLabel);
+        panel4.add(exitLabel);
 
         rightBottomPanel.add(comboBox);//add buttons and combobox to right bottom panel
         rightBottomPanel.add(panel4);
